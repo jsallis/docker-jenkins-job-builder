@@ -91,3 +91,18 @@ INFO:jenkins_jobs.builder:Reconfiguring jenkins job hello-world
 INFO:root:Number of jobs updated: 1
 INFO:jenkins_jobs.builder:Cache saved
 ```
+
+## Development
+
+### Building
+
+```
+docker build .
+```
+
+### Testing
+
+```
+bundle install
+bundle exec rspec specs
+```
