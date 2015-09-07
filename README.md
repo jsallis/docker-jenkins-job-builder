@@ -1,6 +1,6 @@
 # docker-jenkins-job-builder
 
-A [docker](http://www.docker.com) containerized version of the [Jenkins Job Builder](https://github.com/openstack-infra/jenkins-job-builder) tool.
+A [docker](http://www.docker.com) containerized version of the [Jenkins Job Builder](https://github.com/openstack-infra/jenkins-job-builder) tool. A pre-built image is available via [Docker Hub](https://hub.docker.com/r/jsallis/jenkins-job-builder)
 
 ## Example usage
 
