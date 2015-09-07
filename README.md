@@ -6,7 +6,7 @@ A containerized version of the [Jenkins Job Builder](https://github.com/openstac
 
 #### Assumptions
 
-* You have a terminal open in the `/example` directory of this repo
+* You have a terminal open in the `/example_job` directory of this repo
 * You have a jenkins server running at `http://192.168.99.100:8080/`
 
 ```
