@@ -1,0 +1,8 @@
+---
+
+- job:
+    name: hello-world
+    description: 'Do not edit this job through the web!'
+    project-type: freestyle
+    builders:
+      - shell: echo 'Hello world!'
