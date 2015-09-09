@@ -1,5 +1,6 @@
 require "serverspec"
 require "docker"
+require_relative "spec_helper"
 
 describe "Dockerfile" do
   before(:all) do
@@ -9,7 +10,7 @@ describe "Dockerfile" do
     set :backend, :docker
     set :docker_image, @image.id
   end
-  
+
   describe "build" do
     it "has author defined" do
       expect(@image.json["Author"]).to include("Jason Sallis")
@@ -29,8 +30,8 @@ describe "Dockerfile" do
       expect(command("python --version").stderr).to match(/^Python 2/)
     end
 
-    it "has jenkins job builder 1.3.0 installed" do
-      expect(command("jenkins-jobs --version").stderr).to match (/^Jenkins Job Builder version: 1.3.0/)
+    it "has jenkins job builder #{VERSION} installed" do
+      expect(command("jenkins-jobs --version").stderr).to match (/^Jenkins Job Builder version: #{VERSION}/)
     end
   end
 end
