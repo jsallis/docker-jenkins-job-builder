@@ -6,7 +6,7 @@ describe "Dockerfile" do
   before(:all) do
     @image = Docker::Image.build_from_dir(File.expand_path("../..", __FILE__))
 
-    set :os, family: :debian
+    set :os, family: :alpine
     set :backend, :docker
     set :docker_image, @image.id
   end
@@ -16,12 +16,20 @@ describe "Dockerfile" do
       expect(@image.json["Author"]).to include("Jason Sallis")
     end
 
-    it "sets correct working directory" do
-      expect(@image.json["Config"]["WorkingDir"]).to eq("/jenkins-job-builder")
+    it "installs correct version of Alpine" do
+      expect(command("cat /etc/alpine-release").stdout).to include(ALPINE_VERSION)
     end
 
-    it "runs commands to install jenkins job builder" do
-      expect(@image.json["ContainerConfig"]["Cmd"]).to include("pip install -r requirements.txt && python setup.py install")
+    it "installs python" do
+      expect(package("python")).to be_installed
+    end
+
+    it "installs pip" do
+      expect(package("py-pip")).to be_installed
+    end
+
+    it "installs jenkins job builder" do
+      expect(package("jenkins-job-builder")).to be_installed.by("pip").with_version(JENKINS_JOB_BUILDER_VERSION)
     end
   end
 
@@ -31,7 +39,7 @@ describe "Dockerfile" do
     end
 
     it "has jenkins job builder #{VERSION} installed" do
-      expect(command("jenkins-jobs --version").stderr).to match (/^Jenkins Job Builder version: #{VERSION}/)
+      expect(command("jenkins-jobs --version").stderr).to match(/^Jenkins Job Builder version: #{JENKINS_JOB_BUILDER_VERSION}/)
     end
   end
 end
