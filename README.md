@@ -17,7 +17,7 @@ docker run --interactive --tty --rm \
 ##### Output:
 
 ```
-Jenkins Job Builder version: 1.3.0
+Jenkins Job Builder version: 1.4.0
 ```
 
 ### Test job definition
